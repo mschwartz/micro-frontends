@@ -22,7 +22,7 @@ The index.html for the WebComponent is very declarative.  In React, you just get
 
 CSS is ugly and awful to use in practice, and it ends up roughly doubling the number of files in a project if you have one .css file per component.  This is probably the way micro-frontends should be done, but it seems like declaring the CSS in the same source as the component makes it very easy to accomplish the look you want.  
 
-It seems like having a single global object with default styles that can be copied andmodified by components allows for a  consistent theme throughout the application that can be trivially changed in one place.
+It seems like having a single global object with default styles that can be copied and modified by components allows for a  consistent theme throughout the application that can be trivially changed in one place.
 
 The micro-frontends spec suggests each team have isolated code bases and to not use any framework.  This seems like it breaks one of the valuable concept in software engineering - code reuse.  If you are copy/pasting the same logic into multiple components, or similar code is implemented by another team, it's that many more places to fix something that's broken across the app.
 

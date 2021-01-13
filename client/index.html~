@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C/DTD HTML 3.2//EN">
+<html>
+<head>
+  <title>Micro Frontend</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script>
+   customElements.define('nav-bar', NavBar);
+   customElements.define('nav-text', NavText);
+   customElements.define('nav-link', NavLink);
+  </script>
+</head>
+
+<body>
+  <nav-bar>
+    <nav-text> RoboDomo</nav-text>
+    <nav-link>Dashboard</nav-link>
+    <nav-link>Theater</nav-link>
+    <nav-link>HVAC</nav-link>
+    <nav-link>Weather</nav-link>
+    <nav-link>Pool/Spa</nav-link>
+    <nav-link>Things</nav-link>
+    <nav-link>Ring</nav-link>
+    <nav-link>Settings</nav-link>
+    <nav-link>Systems</nav-link>
+  </nav-bar>
+
+  <script>
+    class NavBar extends HTMLElement {
+      constructor() {
+	super();
+	console.log("NavBar");
+	console.log("innerHTML", this.innerHTML);
+      }
+
+      render() {
+	this.innerHTML = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">${this.innerHTML}</nav>`;
+      }
+
+      connectedCallback() {
+	this.render();
+	this.addEventListener('click', () => {
+	  console.log("clicked!");
+	});
+      }
+    }
+
+    class NavText extends HTMLElement {
+      constructor() {
+	super();
+	console.log("NavText");
+      }
+
+      render() {
+	this.innerHTML = `<span>${this.innerHTML}</span>`;
+      }
+
+      connectedCallback() {
+	this.render();
+	this.addEventListener('click', () => {
+	  console.log("clicked!");
+	});
+      }
+    }
+
+    class NavLink extends HTMLElement {
+      constructor() {
+	super();
+	console.log("NavLink");
+      }
+
+      render() {
+	this.innerHTML = `<button>${this.innerHTML}</button>`;
+      }
+
+      connectedCallback() {
+	this.render();
+	this.addEventListener('click', () => {
+	  console.log("clicked!");
+	});
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

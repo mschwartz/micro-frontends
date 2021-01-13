@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C/DTD HTML 3.2//EN">
+<html>
+<head>
+  <title>RoboDomo Micro</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script src="styles.js"></script>
+  <script src="mqtt.js"></script>
+  <script src="components/NavText.js"></script>
+  <script src="components/NavBar.js"></script>
+  <script src="components/NavLink.js"></script>
+  <script src="components/FanTile.js"></script>
+</head>
+
+<body>
+  <nav-bar>
+    <nav-text> RoboDomo</nav-text>
+    <nav-link>Dashboard</nav-link>
+    <nav-link>Theater</nav-link>
+    <nav-link>HVAC</nav-link>
+    <nav-link>Weather</nav-link>
+    <nav-link>Pool/Spa</nav-link>
+    <nav-link>Things</nav-link>
+    <nav-link>Ring</nav-link>
+    <nav-link>Settings</nav-link>
+    <nav-link>Systems</nav-link>
+  </nav-bar>
+  <div>
+    <fan-tile>Office Fan</fan-tile>
+    <fan-tile>Back Room Fan</fan-tile>
+  </div>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->
+</body>
+</html>

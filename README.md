@@ -8,7 +8,7 @@ See what I call the "spec" here:
 
 ### React vs. DOM / WebComponent patterns
 
-The patterns are quite similar.  The life cycle of WebComponents has all the events/methods you would use in React, using classes.  For example, componentDidMount() is mirrored by connectedCallbac(), and so on.
+The patterns are quite similar.  The life cycle of WebComponents has all the events/methods you would use in React, using classes.  For example, componentDidMount() is mirrored by connectedCallback(), and so on.
 
 What React provides is JSX which is a bit more powerful for generating HTML.  
 

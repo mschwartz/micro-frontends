@@ -8,7 +8,6 @@
     get template() {
       const value = this.getAttribute("value");
 
-      console.log("value", value);
       return `<span>${value} MPH</span>`;
     }
 

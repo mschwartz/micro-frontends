@@ -13,14 +13,14 @@
       let html = "";
       dashboard.tiles.map((tile) => {
         switch (tile.type) {
-        case "clock":
+          case "clock":
             html += `<clock-tile location=${tile.location}></clock-tile>`;
             break;
-        case "weather":
+          case "weather":
             html += `<weather-tile location=${tile.location}></weather-tile>`;
             break;
           case "thermostat":
-            html += `<thermostat-tile></thermostat-tile>`;
+            html += `<thermostat-tile zone="${tile.zone}"></thermostat-tile>`;
             break;
           case "theater":
             html += `<theater-tile></theater-tile>`;
@@ -142,10 +142,13 @@
     connectedCallback() {
       this.render();
       this.addEventListener("click", (e) => {
-        console.log("clicked!", e.target.id);
-        this.selected_key = e.target.id;
-        localStorage.setItem(LOCALSTORAGE_KEY, this.selected_key);
-        this.render();
+        const id = e.target.id;
+        console.log(`Dashboards clicked! id(${id})`);
+        if (id) {
+          this.selected_key = e.target.id;
+          localStorage.setItem(LOCALSTORAGE_KEY, this.selected_key);
+          this.render();
+        }
       });
     }
   }

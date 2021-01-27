@@ -1,4 +1,5 @@
 (() => {
+  window.next_id = 1;
   const CONFIG_TOPIC = "settings/status/config";
 
   class ConfigMarker extends HTMLElement {
@@ -22,7 +23,7 @@
     connectedCallback() {
       document.addEventListener(CONFIG_TOPIC, this.handleMessage);
       MQTT.subscribe(CONFIG_TOPIC);
-      this.render();
+      // this.render();
       // this.addEventListener("click", () => {
       //   console.log("clicked!");
       // });

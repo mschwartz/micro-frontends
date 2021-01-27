@@ -38,4 +38,16 @@ MQTT is a pain point for the spec.  I implemented a single MQTT singleton with a
 
 Using the DOM API encourages the modification/enhancement of built in objects using the prototype of the base class.  For example, I would like to add Object.prototype.toCSS() method that takes the object and converts it to a styntactically correct string for use in HTML.
 
+### Downsides
 
+Conditional/dynamic rendering of components requires deeper knowledge of the components by the renderer.  This seems to break the spirit of the micro frontend pattern.  Specifically, the UI for RoboDomo is driven by a JSON configuration and (for example) the types and attributes of tiles for dashboard need to be known by the dashboard renderer.
+
+Namespacing was a pattern we got rid of along the way, but now becomes important again.  There are name collisions for CSS, for any global variables, for localStorage keys, and so on.  Also to be considered is the hash on a URL.
+
+Localization should be done by a common library, not implemented for every component.
+
+Expressiveness is the reason why the SPA frameworks are used.  The DOM API is powerful, but it is more difficult to use in an expressive manner.  Consider message passing between components being done as CustomEvents vs. plain old callbacks or EventEmitter (callbacks).
+
+React's JS as CSS implementaiion is clean and nice to use.  Typing CSS strings is ugly.  Using something like SASS is even uglier.
+
+Tooling is much better for JSX.  Editor plugins, syntax highlighting, etc.  Some do not recognize custom elements at all.

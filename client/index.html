@@ -5,36 +5,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css" integrity="sha384-8iuq0iaMHpnH2vSyvZMSIqQuUnQA7QM+f6srIdlgBrTSEyd//AWNMyEaSF2yPzNQ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
   <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
   <script src="styles.js"></script>
   <script src="mqtt.js"></script>
-  <script src="components/NavBar.js"></script>
-  <script src="components/NavText.js"></script>
-  <script src="components/NavItems.js"></script>
-  <script src="components/NavLink.js"></script>
-  <script src="components/FanTile.js"></script>
+  <script src="Config.js"></script>
+
+  <script src="Components/Locale/LocaleTime.js"></script>
+  <script src="Components/Locale/LocaleTemperature.js"></script>
+  <script src="Components/Locale/LocaleSpeed.js"></script>
+
+  <script src="Components/ClientArea.js"></script>
+  <script src="Components/Navbar/NavBar.js"></script>
+  <script src="Components/Navbar/NavText.js"></script>
+  <script src="Components/Navbar/NavItems.js"></script>
+  <script src="Components/Navbar/NavLink.js"></script>
+  <script src="Components/Dashboards.js"></script>
+  <script src="Components/Tiles/FanTile.js"></script>
+  <script src="Components/Tiles/DimmerTile.js"></script>
+  <script src="Components/Tiles/SwitchTile.js"></script>
+  <script src="Components/Tiles/ClockTile.js"></script>
+  <script src="Components/Tiles/WeatherTile.js"></script>
+  <script src="Components/Tiles/TheaterTile.js"></script>
+  <script src="Components/Tiles/ThermostatTile.js"></script>
+  <script src="Components/Tiles/PoolTile.js"></script>
+  <script src="Components/Tiles/SpaTile.js"></script>
+  <script src="Components/Tiles/PresenceTile.js"></script>
+  <script src="Components/Tiles/GarageDoorTile.js"></script>
+  <script src="Components/Tiles/LockTile.js"></script>
+  <script src="Components/Tiles/RingTile.js"></script>
+  <script src="Components/Tiles/RGBTile.js"></script>
+  <script src="Components/Tiles/BlankTile.js"></script>
+  <script src="Components/Tiles/MacroTile.js"></script>
 </head>
 
-<body">
-  <nav-bar>
-    <nav-text>RoboDomo</nav-text>
-    <nav-items>
-	<nav-link>Dashboard</nav-link>
-	<nav-link>Theater</nav-link>
-	<nav-link>HVAC</nav-link>
-	<nav-link>Weather</nav-link>
-	<nav-link>Pool/Spa</nav-link>
-	<nav-link>Things</nav-link>
-	<nav-link>Ring</nav-link>
-	<nav-link>Settings</nav-link>
-	<nav-link>Systems</nav-link>
-    </nav-items>
-  </nav-bar>
-  <div style="height: 1024px">
-    <fan-tile>Office Fan</fan-tile>
-    <fan-tile>Back Room Fan</fan-tile>
-  </div>
+<body>
+  <config-marker>
+    <nav-bar>
+	<nav-text>RoboDomo</nav-text>
+	<nav-items>
+	    <nav-link>Dashboard</nav-link>
+	    <nav-link>Theater</nav-link>
+	    <nav-link>HVAC</nav-link>
+	    <nav-link>Weather</nav-link>
+	    <nav-link>Pool/Spa</nav-link>
+	    <nav-link>Things</nav-link>
+	    <nav-link>Ring</nav-link>
+	    <nav-link>Settings</nav-link>
+	    <nav-link>Systems</nav-link>
+	</nav-items>
+    </nav-bar>
+    <client-area>
+      <dashboard-container>
+	</dashboard-container>
+    </client-area>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </config-marker>
 </body>
 </html>

@@ -33,6 +33,7 @@ class MQTTSingleton {
 
   onConnect() {
     console.log("MQTT CONNECTED!");
+    this.mqtt.subscribe("reload");
     this.connected = true;
   }
 
@@ -45,12 +46,18 @@ class MQTTSingleton {
   }
 
   onMessage(topic, payload) {
+    if (topic === "reload") {
+      window.location.reload();
+      return;
+    }
+
+    this.cache[topic] = payload.toString();
     if (!this.subscriptions[topic]) {
       // this.mqtt.unsubscribe(topic);
       this.subscriptions[topic] = 0;
     } else {
       console.log(
-        "%cmessage <<< %c" + topic + " %c" + payload.toString(),
+        "%cmessage <<< %c" + topic + " %c" + payload.toString().substr(0, 40),
         "font-weight: bold;",
         "color:red; font-weight: bold",
         "color:blue; font-weight: bold"
@@ -87,6 +94,12 @@ class MQTTSingleton {
       this.mqtt.subscribe(topic);
     }
     this.subscriptions[topic]++;
+    const payload = this.cache[topic];
+    if (payload) {
+      document.dispatchEvent(
+        new CustomEvent(topic, { detail: JSON.parse(payload.toString()) })
+      );
+    }
   }
 
   unsubscribe(topic) {

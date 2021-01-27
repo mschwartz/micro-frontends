@@ -4,12 +4,12 @@
       super();
       this._style = [
         "float: left",
-        "width: 128px",
-        "height: 128px",
-        "border: 2px solid white",
+        "width: 124px",
+        "height: 120px",
+        "border: 4px outset white",
         "border-radius: 8px",
         "text-align: center",
-        "padding: 20px",
+        "padding: 8px",
         "margin: 2px",
       ].join(";");
 
@@ -32,13 +32,28 @@
       this.render();
     }
 
+    template() {
+      if (this._switch) {
+        return `
+	    <div style="${this._style}">
+	    <i style="font-size: 24px; "class="fas fa-fan"></i>
+	    <div style="line-height: 120%;  height: 44px">${this._device}</div>
+	    <div>${this._level}%</div>
+	    </div>
+        `;
+      } else {
+        return `
+	    <div style="${this._style}">
+	    <i style="font-size: 24px; "class="fas fa-fan"></i>
+	    <div style="line-height: 120%;  height: 44px">${this._device}</div>
+	    <div>OFF</div>
+	    </div>
+	`;
+      }
+    }
+
     render() {
-      this.innerHTML = `
-    <div style="${this._style}">
-	<div>${this._device}</div>
-	<div>${this._switch ? "ON" : "OFF"}</div>
-	<div>${this._level}</div>
-    </div>`;
+      this.innerHTML = this.template();
     }
 
     connectedCallback() {

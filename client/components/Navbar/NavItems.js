@@ -6,7 +6,6 @@
     }
 
     render() {
-      console.log("render");
       this.innerHTML = `<ul class="navbar-nav">${this.child_elements}</ul>`;
     }
 

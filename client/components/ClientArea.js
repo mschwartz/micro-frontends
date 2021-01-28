@@ -6,9 +6,13 @@
     }
 
     render() {
-      console.log(`Render client area hash(${window.location.hash})`);;
+      console.log(`Render client area hash(${window.location.hash})`);
       const height = 768 - 54 - 1;
-      this.innerHTML = `<div style="width: 1024px; height: ${height}px; max-height: ${height}px">${this.child_elements}</div>`;
+      this.innerHTML = `
+	    <div style="width: 1024px; height: ${height}px; max-height: ${height}px">
+		${this.child_elements}
+	    </div>
+	`;
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

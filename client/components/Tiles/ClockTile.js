@@ -21,7 +21,7 @@
         "border: 4px outset white",
         "border-radius: 8px",
         "text-align: center",
-        "padding: 20px",
+        "padding: 8px",
         "margin: 2px",
       ].join(";");
 

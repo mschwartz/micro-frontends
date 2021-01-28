@@ -36,17 +36,19 @@
       if (this._switch) {
         return `
 	    <div style="${this._style}">
-	    <i class="fa fa-adjust" style="font-size: 24px"></i>
-	    <div style="line-height: 120%;  height: 44px">${this._device}</div>
-	    <div>${this._level}%</div>
+		<div style="color: yellow">
+		    <i class="fa fa-adjust" style="margin-bottom: 8px; font-size: 30px"></i>
+		    <div style="line-height: 120%;  height: 40px">${this._device}</div>
+		    <div style="font-size: 20px">${this._level}%</div>
+		</div>
 	    </div>
         `;
       } else {
         return `
 	    <div style="${this._style}">
-	    <i class="fa fa-adjust" style="font-size: 24px"></i>
-	    <div style="line-height: 120%;  height: 44px">${this._device}</div>
-	    <div>OFF</div>
+		<i class="fa fa-adjust" style="margin-bottom: 8px; font-size: 30px"></i>
+		<div style="line-height: 120%;  height: 40px">${this._device}</div>
+		<div style="font-size: 20px">OFF</div>
 	    </div>
 	`;
       }

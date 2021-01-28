@@ -15,18 +15,12 @@
     }
 
     handleMessage(event) {
-      console.log("message");
       window.Config = event.detail;
-      console.log("GOT CONFIG", window.Config);
       this.render();
     }
     connectedCallback() {
       document.addEventListener(CONFIG_TOPIC, this.handleMessage);
       MQTT.subscribe(CONFIG_TOPIC);
-      // this.render();
-      // this.addEventListener("click", () => {
-      //   console.log("clicked!");
-      // });
     }
   }
 

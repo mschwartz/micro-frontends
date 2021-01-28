@@ -1,7 +1,7 @@
 (() => {
   const LOCALSTORAGE_KEY = "dashboard-tab";
 
-  class Dashboards extends HTMLElement {
+  class DashboardsScreen extends HTMLElement {
     constructor() {
       super();
       this.child_elements = this.innerHTML;
@@ -23,7 +23,7 @@
             html += `<thermostat-tile zone="${tile.zone}"></thermostat-tile>`;
             break;
           case "theater":
-            html += `<theater-tile></theater-tile>`;
+            html += `<theater-tile title="${tile.title}"></theater-tile>`;
             break;
           case "pool":
             html += `<pool-tile></pool-tile>`;
@@ -32,19 +32,22 @@
             html += `<spa-tile></spa-tile>`;
             break;
           case "presence":
-            html += `<presence-tile></presence-tile>`;
+            html += `<presence-tile people='${JSON.stringify(
+              tile.people
+            )}'></presence-tile>`;
             break;
           case "lock":
-            html += `<lock-tile></lock-tile>`;
+            html += `<lock-tile hub="${tile.hub}" device="${tile.device}" title="${tile.title}"></lock-tile>`;
             break;
           case "ring":
-            html += `<ring-tile></ring-tile>`;
+            html += `<ring-tile location="${tile.location}" device="${tile.device}"></ring-tile>`;
             break;
           case "rgb":
+            console.log("rgb", tile);
             html += `<rgb-tile></rgb-tile>`;
             break;
           case "garagedoor":
-            html += `<garagedoor-tile></garagedoor-tile>`;
+            html += `<garagedoor-tile title="${tile.title}" device="${tile.device.device}"></garagedoor-tile>`;
             break;
           case "fan":
             html += `<fan-tile>${tile.device}</fan-tile>`;
@@ -144,7 +147,7 @@
       this.addEventListener("click", (e) => {
         const id = e.target.id;
         console.log(`Dashboards clicked! id(${id})`);
-        if (id) {
+        if (id && id.indexOf("-tab") !== -1) {
           this.selected_key = e.target.id;
           localStorage.setItem(LOCALSTORAGE_KEY, this.selected_key);
           this.render();
@@ -154,6 +157,6 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    customElements.define("dashboard-container", Dashboards);
+    customElements.define("dashboards-screen", DashboardsScreen);
   });
 })();

@@ -1,14 +1,3 @@
-class MQTTEvent extends CustomEvent {
-  constructor(topic, message) {
-    super([topic, message]);
-    this.topic = topic;
-    this.message = message;
-    try {
-      this.message = JSON.parse(message);
-    } catch (e) {}
-  }
-}
-
 class MQTTSingleton {
   constructor() {
     this.connect = this.connect.bind(this);
@@ -68,7 +57,7 @@ class MQTTSingleton {
     }
   }
 
-  subscribe(topic) {
+  subscribe(topic, handler) {
     if (!this.connected) {
       this.subscription_queue.push(topic);
       if (!this.interval) {
@@ -94,6 +83,9 @@ class MQTTSingleton {
       this.mqtt.subscribe(topic);
     }
     this.subscriptions[topic]++;
+    if (handler) {
+      document.addEventListener(topic, handler);
+    }
     const payload = this.cache[topic];
     if (payload) {
       document.dispatchEvent(
@@ -102,12 +94,15 @@ class MQTTSingleton {
     }
   }
 
-  unsubscribe(topic) {
+  unsubscribe(topic, handler) {
     if (this.subscriptions[topic]) {
       this.subscriptions[topic]--;
     }
     if (this.subscriptions[topic] === 0) {
       this.mqtt.unsubscribe(topic);
+    }
+    if (handler) {
+      document.removeEventListener(topic, handler);
     }
   }
 

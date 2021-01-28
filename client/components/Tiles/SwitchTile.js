@@ -29,17 +29,19 @@
       if (this._switch) {
         return `
 	    <div style="${this._style}">
-	    <i class="fa fa-lightbulb" style="font-size: 24px"></i>
-	    <div style="line-height: 120%;  height: 44px">${this._device}</div>
-	    <div>OFF</div>
+		<div style="color: yellow">
+		    <i class="fa fa-lightbulb" style="font-size: 30px; margin-bottom: 8px"></i>
+		    <div style="line-height: 120%;  height: 40px">${this._device}</div>
+		    <div style="font-size: 20px">ON</div>
+		</div>
 	    </div>
         `;
       } else {
         return `
 	    <div style="${this._style}">
-	    <i class="fa fa-lightbulb" style="font-size: 24px"></i>
-	    <div style="line-height: 120%;  height: 44px">${this._device}</div>
-	    <div>OFF</div>
+		<i class="fa fa-lightbulb" style="font-size: 30px; margin-bottom: 8px"></i>
+		<div style="line-height: 120%;  height: 40px">${this._device}</div>
+		<div style="font-size: 20px">OFF</div>
 	    </div>
 	`;
       }
@@ -51,7 +53,8 @@
 
     connectedCallback() {
       this.render();
-      this.addEventListener("click", () => {
+      this.addEventListener("click", (e) => {
+        e.stopPropagation();
         console.log("clicked!");
       });
       document.addEventListener(this._switch_topic, this.handleSwitchMessage);

@@ -27,6 +27,7 @@
       this._switch = e.detail === "on";
       this.render();
     }
+
     handleLevelMessage(e) {
       this._level = e.detail;
       this.render();
@@ -34,19 +35,31 @@
 
     template() {
       if (this._switch) {
+        let level = "OFF";
+        if (this._level < 34) {
+          level = "LOW";
+        }
+        else if (this._level < 67) {
+          level = "MEDIUM";
+        }
+        else {
+          level = "HIGH";
+        }
         return `
 	    <div style="${this._style}">
-	    <i style="font-size: 24px; "class="fas fa-fan"></i>
-	    <div style="line-height: 120%;  height: 44px">${this._device}</div>
-	    <div>${this._level}%</div>
+		<div style="color: yellow">
+		    <i style="font-size: 30px; margin-bottom: 8px" class="fas fa-fan"></i>
+		    <div style="line-height: 120%;  height: 40px">${this._device}</div>
+		    <div style="font-size: 20px">${level}</div>
+		</div>
 	    </div>
         `;
       } else {
         return `
 	    <div style="${this._style}">
-	    <i style="font-size: 24px; "class="fas fa-fan"></i>
-	    <div style="line-height: 120%;  height: 44px">${this._device}</div>
-	    <div>OFF</div>
+	    <i style="font-size: 30px; margin-bottom: 8px" class="fas fa-fan"></i>
+	    <div style="line-height: 120%;  height: 40px">${this._device}</div>
+	    <div style="font-size: 20px">OFF</div>
 	    </div>
 	`;
       }

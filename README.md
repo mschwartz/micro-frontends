@@ -4,6 +4,19 @@ Playground for micro frontends
 See what I call the "spec" here:
     https://micro-frontends.org/
 
+## RoboDomo client using DOM methods and Twiter Bootstrap only
+
+MQTT is used to update state of all the controllable or state monitoring components.
+
+A special MQTT topic, "reload" is sent when the server restarts and the client accepts the message and reloads itself.  There is no particularly great way to accomplish automatic page reload when source is edited...
+
+
+### Optimized Rendering
+
+Strategically, we shouldn't listen for MQTT topics that aren't relevant for the current display.  For example, when looking at a theater display for one theater, the MQTT messages related to a different theater should not be subscribed.  
+
+Similarly, theater display for theathers not shown on screen should not be in the DOM, present but hidden.
+
 ## Notes
 
 ### React vs. DOM / WebComponent patterns

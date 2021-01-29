@@ -3,6 +3,8 @@
     constructor() {
       super();
       this._child_elements = this.innerHTML;
+
+      this.clickHandler = this.clickHandler.bind(this);
     }
 
     get template() {
@@ -75,9 +77,7 @@
       this.innerHTML = this.template;
     }
 
-    connectedCallback() {
-      this.render();
-      this.addEventListener("click", (e) => {
+    clickHandler(e) {
         const topic = this.getAttribute("topic"),
           message = this.getAttribute("message");
 
@@ -88,7 +88,14 @@
         } else {
           MQTT.publish(topic, message);
         }
-      });
+    }
+    connectedCallback() {
+      this.render();
+      this.addEventListener("click", this.clickHandler);
+    }
+
+    disconnectedCallback() {
+      this.removeEventListener("click", this.clickHandler);
     }
   }
 

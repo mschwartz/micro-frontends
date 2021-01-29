@@ -60,7 +60,7 @@
 		topic="${topic}"
 		message="Select"
 	    >
-		<i class="fa fa-chevron-left"></i>
+		<i class="fa fa-check-circle"></i>
 	    </mqtt-button>
 	    <mqtt-button 
 		mini 

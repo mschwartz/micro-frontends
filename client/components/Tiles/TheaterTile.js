@@ -17,11 +17,14 @@
       ].join(";");
 
       this.theater = new Theater(this.title);
-      this.state = {};
+      this.state = {
+        show: false,
+      };
 
       //
       this.handleChange = this.handleChange.bind(this);
     }
+
     formatTime(time) {
       const hours = parseInt(time / 3600, 10);
       const minutes = parseInt((time % 3600) / 60, 10);
@@ -36,22 +39,26 @@
         const { currentDevice, channels, channel } = this.state,
           guide = channels[channel];
 
+        // console.log("tivo", currentDevice);
         if (currentDevice.type !== "tivo") {
           return "";
         }
 
-        const renderGuide = () => {
-          return `
-	    <img src=${guide.logo.URL} alt=${guide.name} style="width: 128px; margin 0px; padding: 0px"/>
-`;
-        };
+        // console.log("render tivo", this.state.tivo);
+        // console.log("render tivo favorites", JSON.stringify(this.state.tivo.favorites));
         return `
-	    <h4>${this.state.tivo.title}</h4>
-	    ${renderGuide()}
-	    <div>
-		${this.state.channel} ${guide.name}
-	    </div>
-`;
+	    <tivo-tile
+		title="${this.state.tivo.title}"
+		channels='${JSON.stringify(channels)}'
+		favorites='${JSON.stringify(this.state.tivo.favorites)}'
+		device="${this.state.tivo.device}"
+		guide="${this.state.tivo.guide}"
+		logo="${guide.logo.URL}"
+		channel="${channel}"
+		name="${guide.name}"
+	    >
+	    </tivo-tile>
+        `;
       } catch (e) {
         return "";
       }
@@ -101,7 +108,7 @@
 	    <denon-tile
 		power="${avr.power}"
 		device="${avr.device}"
-		mute="${avr.mute ? 'true' : 'false'}"
+		mute="${avr.mute ? "true" : "false"}"
 	    >
 	    </denon-tile>
 	</div>

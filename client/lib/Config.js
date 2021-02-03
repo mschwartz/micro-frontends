@@ -15,10 +15,13 @@
     }
 
     handleMessage(event) {
+      console.log("CONFIG EVENT", event);
       window.Config = event.detail;
       this.render();
     }
+
     connectedCallback() {
+      console.log("SUB")
       document.addEventListener(CONFIG_TOPIC, this.handleMessage);
       MQTT.subscribe(CONFIG_TOPIC);
     }

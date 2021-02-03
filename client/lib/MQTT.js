@@ -34,6 +34,16 @@ class MQTTSingleton {
     console.log("MQTT CLOSE!", ...e);
   }
 
+  cached(key) {
+    try {
+      return JSON.parse(this.cache[key]);
+    }
+    catch (e) {
+    return this.cache[key];
+      
+    }
+  }
+
   onMessage(topic, payload) {
     if (topic === "reload") {
       window.location.reload();
@@ -58,6 +68,7 @@ class MQTTSingleton {
   }
 
   subscribe(topic, handler) {
+    console.log("subscribe", topic);
     if (!this.connected) {
       this.subscription_queue.push(topic);
       if (!this.interval) {
@@ -81,20 +92,22 @@ class MQTTSingleton {
     if (!this.subscriptions[topic]) {
       this.subscriptions[topic] = 0;
       this.mqtt.subscribe(topic);
+    } else {
+      const payload = this.cache[topic];
+      if (payload) {
+        document.dispatchEvent(
+          new CustomEvent(topic, { detail: JSON.parse(payload.toString()) })
+        );
+      }
     }
     this.subscriptions[topic]++;
     if (handler) {
       document.addEventListener(topic, handler);
     }
-    const payload = this.cache[topic];
-    if (payload) {
-      document.dispatchEvent(
-        new CustomEvent(topic, { detail: JSON.parse(payload.toString()) })
-      );
-    }
   }
 
   unsubscribe(topic, handler) {
+    console.log("unsubscribe", topic);
     if (this.subscriptions[topic]) {
       this.subscriptions[topic]--;
     }

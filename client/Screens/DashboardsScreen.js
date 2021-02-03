@@ -70,6 +70,7 @@
     }
 
     get template() {
+      console.log("template")
       let html = `
 <nav>
   <div class="nav nav-tabs" id="dashboard-tab" role="tablist">
@@ -128,6 +129,7 @@
     }
 
     render() {
+      console.log("render")
       if (!window.Config) {
         return;
       }
